@@ -10,7 +10,6 @@ body {
   background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
   border-bottom: 1px solid #e5e7eb;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-  animation: slideDown 0.6s ease-out;
 }
 .navbar-container {
   display: flex;
@@ -29,17 +28,11 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: -0.5px;
-  animation: slideRight 0.6s ease-out;
-  transition: transform 0.3s ease;
 }
-/*  ------ .navbar-logo:hover {
-  transform: scale(1.05);
-} ------ */
 .navbar-links {
   display: flex;
   gap: 2rem;
   list-style: none;
-  animation: slideLeft 0.6s ease-out;
 }
 .navbar-link {
   position: relative;

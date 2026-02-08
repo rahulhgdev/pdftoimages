@@ -72,7 +72,13 @@ const Convertor = () => {
   function handleDrop(e) {
     e.preventDefault();
     const dropped = e.dataTransfer?.files?.[0];
-    if (dropped) setFile(dropped);
+    if (!dropped || !dropped.type?.includes("pdf")) {
+      setError("Please drop a valid PDF file");
+      setFile(null);
+      return;
+    } 
+    setError(null);
+    setFile(dropped);
   }
 
   const handleConvert = useCallback(async () => {
@@ -180,7 +186,7 @@ const Convertor = () => {
               )}
 
               {error && (
-                <p className="text-sm text-red-600 mt-2 text-center animate-shake">
+                <p className="text-sm text-red-600 mb-3 text-center animate-shake">
                   {error}
                 </p>
               )}
@@ -281,7 +287,7 @@ const Convertor = () => {
                     Next
                   </button>
                 </div> */}
-                
+
               </div>
 
               {/* Download Button */}
