@@ -23,7 +23,8 @@ body {
 .navbar-logo {
   font-size: 1.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  /* background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); */
+  background: #2d2525;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -243,6 +244,73 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"]::-moz-range-thumb:hover {
   transform: scale(1.2);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.6);
+}
+
+/*  ------ Select Dropdown Styles ------ */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234b5563' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #f3f4f6;
+}
+
+select:focus {
+  outline: none;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/*  ------ Image Zoom Styles ------ */
+.image-zoom-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.image-zoom-container img {
+  transition: transform 0.2s ease-out;
+}
+
+.image-zoom-container.zoomed img {
+  transform: scale(2);
+}
+
+.zoom-indicator {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(59, 130, 246, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  animation: slideDown 0.3s ease-out;
+}
+
+/*  ------ Upload Area Disabled State ------ */
+.upload-area.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #f9fafb;
+}
+
+.upload-area.disabled:hover {
+  border-color: #d1d5db;
+  background-color: #f9fafb;
 }
 
 /*  ------ How it works ------ */
