@@ -390,9 +390,6 @@ const Convertor = () => {
               {/* Controls Row */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 pb-4 border-b border-gray-200">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-600 mb-2 uppercase tracking-wider">
-                    Format
-                  </label>
                   <select
                     value={imageFormat}
                     onChange={(e) => setImageFormat(e.target.value)}
