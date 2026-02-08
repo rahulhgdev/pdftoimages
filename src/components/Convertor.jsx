@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, forwardRef } from "react";
 import * as pdfjsLib from "pdfjs-dist";
 import pdfjsWorker from "pdfjs-dist/build/pdf.worker.mjs?url";
 import JSZip from "jszip";
@@ -111,7 +111,7 @@ async function downloadImagesAsZip(images, fileName, imageFormat) {
   }
 }
 
-const Convertor = () => {
+const Convertor = forwardRef((_props, ref) => {
   const [file, setFile] = useState(null);
   const [images, setImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -243,7 +243,7 @@ const Convertor = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center p-6 min-h-[calc(100vh-80px)]">
+    <div className="flex items-center justify-center p-6 min-h-[calc(100vh-80px)]" ref={ref}>
       <div className="max-w-3xl w-full">
         <header className="mb-6 text-center animate-fadeIn">
           <h1 className="text-4xl font-bold text-gray-900">PDF2Image</h1>
@@ -467,7 +467,7 @@ const Convertor = () => {
                 {/* Image Info Badge */}
                 <div className="flex gap-2 justify-center flex-wrap">
                   <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-                    {images[currentIndex]?.format.toUpperCase()}
+                    {imageFormat.toUpperCase()}
                   </span>
                   <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
                     Quality: {images[currentIndex]?.quality}%
@@ -520,6 +520,6 @@ const Convertor = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Convertor;

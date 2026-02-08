@@ -314,7 +314,8 @@ select:focus {
 }
 
 /*  ------ How it works ------ */
-.how-it-works-container {
+.how-it-works-container,
+.faq-container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 1rem;
