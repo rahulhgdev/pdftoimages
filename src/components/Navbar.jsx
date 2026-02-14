@@ -25,7 +25,7 @@ const Navbar = ({ onConverterClick, onHowWorksClick, onFAQClick }) => {
             onClick={onConverterClick}
           >
             <img src={logo} alt="logo" className="w-10 h-10 md:w-9 md:h-9" />
-            <span className="hidden md:block text-lg font-semibold text-gray-800">
+            <span className="text-lg font-semibold text-gray-800">
               PDF2Image
             </span>
           </div>

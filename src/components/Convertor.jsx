@@ -303,7 +303,7 @@ const Convertor = forwardRef((_props, ref) => {
                   >
                     {file?.name}
                   </p>
-                  <p className="text-xs font-medium text-gray-500">
+                  <p className="text-sm font-medium text-gray-500">
                     {formatFileSize(file.size)}
                   </p>
                 </div>
