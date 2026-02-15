@@ -272,7 +272,7 @@ const Convertor = forwardRef((_props, ref) => {
                 className="h-20 w-20 mb-4 opacity-90 animate-bounce"
               />
               <h3 className="text-lg font-medium text-gray-900">
-                Drag & drop your PDF here
+                Drag & drop your file
               </h3>
               <p className="text-sm text-gray-500 mt-2">
                 Or click to choose a file from your computer
