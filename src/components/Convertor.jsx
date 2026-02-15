@@ -7,6 +7,9 @@ import uploadIcon from "../assets/upload.png";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
+// File size limit: 100MB
+const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100MB in bytes
+
 // Quality scale mapping for pdf.js - Controls rendering resolution
 const QUALITY_SCALES = {
   50: 1.0,   // Low quality - 1.0x scale
@@ -16,13 +19,7 @@ const QUALITY_SCALES = {
   200: 4.0,  // Ultra High quality - 4.0x scale
 };
 
-function formatFileSize(bytes) {
-  const K = 1000;
-  if (bytes < K) return `${bytes} B`;
-  if (bytes < K * K) return `${(bytes / K).toFixed(2)} KB`;
-  if (bytes < K * K * K) return `${(bytes / (K * K)).toFixed(2)} MB`;
-  return `${(bytes / (K * K * K)).toFixed(2)} GB`;
-}
+
 
 /**
  * Convert PDF pages to images with specified quality and format
@@ -156,7 +153,12 @@ const Convertor = forwardRef((_props, ref) => {
       setError("*Please drop a valid PDF file");
       setFile(null);
       return;
-    } 
+    }
+    if (dropped.size > MAX_FILE_SIZE) {
+      setError("*File size exceeds 100MB limit");
+      setFile(null);
+      return;
+    }
     setError(null);
     setFile(dropped);
   }
@@ -275,6 +277,9 @@ const Convertor = forwardRef((_props, ref) => {
               <p className="text-sm text-gray-500 mt-2">
                 Or click to choose a file from your computer
               </p>
+              <p className="text-xs text-gray-400 mt-1">
+                Max file size: 100MB
+              </p>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -283,9 +288,24 @@ const Convertor = forwardRef((_props, ref) => {
                 disabled={converting}
                 onChange={(e) => {
                   if (!converting) {
-                    setFile(e.target.files?.[0] ?? null);
-                    setImages([]);
-                    setError(null);
+                    const selectedFile = e.target.files?.[0] ?? null;
+                    if (selectedFile) {
+                      if (selectedFile.size > MAX_FILE_SIZE) {
+                        setError("*File size exceeds 100MB limit");
+                        setFile(null);
+                        if (fileInputRef.current) {
+                          fileInputRef.current.value = "";
+                        }
+                        return;
+                      }
+                      setFile(selectedFile);
+                      setImages([]);
+                      setError(null);
+                    } else {
+                      setFile(null);
+                      setImages([]);
+                      setError(null);
+                    }
                   }
                 }}
               />
@@ -302,9 +322,6 @@ const Convertor = forwardRef((_props, ref) => {
                     title={file?.name}
                   >
                     {file?.name}
-                  </p>
-                  <p className="text-sm font-medium text-gray-500">
-                    {formatFileSize(file.size)}
                   </p>
                 </div>
               )}
