@@ -104,7 +104,7 @@ Works on all modern browsers that support:
 - Keep PDF files under 100MB for best conversion speed
 - Use PNG for lossless quality, JPG for smaller file sizes, WebP for the best compression
 - Higher quality settings produce larger images but with better clarity
-- Local processing means no waiting for server responses—just instant conversion
+- Local processing means no waiting for server responses just instant conversion
 
 ## License
 
